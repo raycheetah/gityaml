@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{},"creationTimestamp":"2023-11-15T08:36:41Z","generation":2,"name":"gateway-ingress","namespace":"twm-cloud","resourceVersion":"109386784","uid":"38f121e6-7670-4788-b900-7399fedd659e"},"spec":{"ingressClassName":"nginx","rules":[{"host":"svc.twm.com.tw","http":{"paths":[{"backend":{"service":{"name":"gateway","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}]},"status":{"loadBalancer":{"ingress":[{"ip":"10.102.199.40"}]}}}
+  creationTimestamp: "2024-11-27T02:13:50Z"
+  generation: 1
+  name: mysql-ingress
+  namespace: twm-cloud
+  resourceVersion: "109389025"
+  uid: f5483d35-f090-458c-95eb-b35c3e36a9d9
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: mysql.twm.com.tw
+    http:
+      paths:
+      - backend:
+          service:
+            name: phpmyadmin-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 10.102.199.40
